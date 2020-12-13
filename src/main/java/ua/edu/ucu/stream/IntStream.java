@@ -2,6 +2,8 @@ package ua.edu.ucu.stream;
 
 import ua.edu.ucu.function.*;
 
+import java.util.ArrayList;
+
 public interface IntStream {
 
     Double average();
@@ -9,6 +11,8 @@ public interface IntStream {
     Integer max();
 
     Integer min();
+
+    ArrayList<Integer> getData();
     
     IntStream flatMap(IntToIntStreamFunction func);
 

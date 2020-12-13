@@ -12,11 +12,14 @@ import org.junit.Before;
 public class StreamAppTest {
     
     private IntStream intStream;
+    private IntStream emptyIntStream;
 
     @Before
     public void init() {
         int[] intArr = {-1, 0, 1, 2, 3};
         intStream = AsIntStream.of(intArr);
+        int[] emptyIntArr = {};
+        emptyIntStream = AsIntStream.of(emptyIntArr);
     }
     
     @Test
@@ -42,5 +45,44 @@ public class StreamAppTest {
         String result = StreamApp.streamForEach(intStream);
         assertEquals(expResult, result);        
     }
-    
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIsEmpty() {
+        emptyIntStream.average();
+    }
+
+    @Test
+    public void testAverage() {
+        double expResult = 1.0;
+        double result = intStream.average();
+        assertEquals(expResult, result, 0.0001);
+    }
+
+    @Test
+    public void testMax() {
+        int expResult = 3;
+        int result = intStream.max();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testMin() {
+        int expResult = -1;
+        int result = intStream.min();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testCount() {
+        int expResult = 5;
+        int result = (int) intStream.count();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSum() {
+        int expResult = 5;
+        int result = intStream.sum();
+        assertEquals(expResult, result);
+    }
 }
