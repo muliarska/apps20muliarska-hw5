@@ -29,25 +29,25 @@ public class AsIntStream implements IntStream {
         return ((double) sum() / (double) this.data.size());
     }
 
-    private Integer max_min(boolean flag) {
+    private Integer maxMin(boolean flag) {
         isEmpty();
-        int result_value = data.get(0);
+        int resultValue = data.get(0);
         for (int value : data) {
-            if ((value < result_value) ^ flag) {
-                result_value = value;
+            if ((value < resultValue) ^ flag) {
+                resultValue = value;
             }
         }
-        return result_value;
+        return resultValue;
     }
 
     @Override
     public Integer max() {
-        return max_min(true);
+        return maxMin(true);
     }
 
     @Override
     public Integer min() {
-        return max_min(false);
+        return maxMin(false);
     }
 
     @Override
